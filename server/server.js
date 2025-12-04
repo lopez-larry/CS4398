@@ -42,9 +42,27 @@ connectDB();
 // App Setup
 // ---------------------------------------------
 const app = express();
-app.set('trust proxy', 1);
+app.set("trust proxy", true); // Required for CloudFront or any proxy
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === "production";
+
+// ---------------------------------------------
+// Login Rate Limiter (SAFE VERSION)
+// ---------------------------------------------
+let loginLimiter;
+
+if (isProd) {
+  loginLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 10,             // allow 10 login attempts per minute per IP
+    message: "Too many login attempts. Please try again shortly.",
+    standardHeaders: true,
+    legacyHeaders: false
+  });
+} else {
+  console.log("⚠️ Development mode: Login rate limiter DISABLED");
+  loginLimiter = (req, res, next) => next(); // no limiting in dev
+}
 
 // ---------------------------------------------
 // Middleware
@@ -74,13 +92,7 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Requested-With',
-    'Accept',
-    'Origin'
-  ],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
 };
 
 app.use(cors(corsOptions));
@@ -98,23 +110,17 @@ app.use(morgan('dev'));
 app.use(auditLogger);
 app.use(trackCookies);
 
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: 'Too many requests. Please try again later.',
-  })
-);
+// ---------------------------------------------
+// ROUTES
+// ---------------------------------------------
+app.use("/api/user/login", loginLimiter); // secure login
+app.use("/api/user/forgot-password", loginLimiter);
 
-// ---------------------------------------------
-// Routes
-// ---------------------------------------------
-app.use('/api/user', userRoutes);
+app.use('/api/posts', postRoutes);
 app.use('/api/dogs', dogRoutes);
 app.use('/api/breeds', breedRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/breeders', breederRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/public', publicRoutes);
@@ -122,7 +128,6 @@ app.use('/api', healthRoute);
 app.use('/api/policies', policyRoute);
 app.use("/api/contact", contactRoutes);
 app.use('/api/upload', uploadRoutes);
-app.use('/api/posts', postRoutes);
 
 // Debug
 app.get('/', (req, res) => {
