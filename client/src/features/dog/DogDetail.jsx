@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import axios from '@/axiosInstance';
 import { toast } from 'react-toastify';
 
+// NEW: import the responsive CSS
+import './DogDetail.css';
+
 const DogDetail = () => {
   const { id } = useParams();
   const [dog, setDog] = useState(null);
@@ -56,24 +59,22 @@ const DogDetail = () => {
     'Unknown';
 
   return (
-    <div className="p-4">
-      {/* Dog Image */}
+    <div className="p-4 max-w-lg mx-auto">
+
+      {/* Dog Image — now standardized */}
       <img
         src={dog.imageUrl || '/placeholder-dog.svg'}
         alt={dog.name}
-        className="w-80 h-80 object-cover rounded-lg"
+        className="dog-image"
       />
 
-      {/* Dog Name */}
       <h2 className="text-2xl font-bold mt-3">{dog.name}</h2>
 
-      {/* Dog Info */}
       <p>Breed: {dog.breed?.name || '—'}</p>
       <p>Age: {dog.ageMonths !== undefined ? `${dog.ageMonths} months` : 'N/A'}</p>
       <p>{dog.description}</p>
       <p>Breeder: {breederName}</p>
 
-      {/* Actions */}
       <div className="mt-3">
         <Link
           to={`/dogs/${dog._id}/contact`}
@@ -82,7 +83,6 @@ const DogDetail = () => {
           Contact Breeder
         </Link>
 
-        {/* Toggle button */}
         <button
           onClick={handleToggleFavorite}
           disabled={saving}

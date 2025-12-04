@@ -1,0 +1,45 @@
+.dog-image {
+  width: 100%;
+  height: auto;
+  max-width: 220px;     /* desktop max */
+  aspect-ratio: 1 / 1;  /* forces perfect square shape */
+  object-fit: cover;    /* crops neatly without distortion */
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Large tablets */
+@media (min-width: 1024px) {
+  .dog-image {
+    max-width: 800px;
+  }
+}
+
+/* Small tablets */
+@media (max-width: 1024px) {
+  .dog-image {
+    max-width: 600px;
+  }
+}
+
+/* Small tablets */
+@media (max-width: 768px) {
+  .dog-image {
+    max-width: 500px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .dog-image {
+    max-width: 200px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 150px) {
+  .dog-image {
+    max-width: 110px;
+  }
+}
