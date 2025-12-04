@@ -1,0 +1,35 @@
+/**
+ * @file Footer.css
+ * @description Styles for the <Footer /> component in the AI Resume App.
+ *
+ * Features:
+ *  - Smooth hover transitions on links
+ *  - Active link state for visual consistency with navbar
+ *  - Optional focus styling for accessibility
+ *
+ * This file is imported directly in Footer.jsx
+ */
+
+/* Base link styles inside footer */
+footer a {
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover state */
+footer a:hover {
+  color: #007bff; /* Bootstrap's primary blue */
+  text-decoration: underline;
+}
+
+/* Active route state */
+footer a.active {
+  color: #000; /* Bold black like navbar active links */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Optional: Focus state for accessibility */
+footer a:focus {
+  outline: 2px dashed #007bff;
+  outline-offset: 2px;
+}

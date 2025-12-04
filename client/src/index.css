@@ -1,0 +1,28 @@
+/**
+ * @file index.css
+ * @description Global styles that apply to the entire application.
+ *
+ * Purpose:
+ *  - Resets default body margin.
+ *  - Defines base font families for modern systems.
+ *  - Improves font rendering via font-smoothing.
+ *  - Sets a consistent monospace font for <code> blocks.
+ *
+ * Notes:
+ *  - This file is typically imported in main.jsx.
+ */
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa; /* Light gray for neutral background */
+  color: #212529; /* Bootstrap's base text color */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

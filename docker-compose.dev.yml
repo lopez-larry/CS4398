@@ -1,0 +1,45 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: mern_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: app
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    container_name: mern_api
+    command: npm run dev
+    env_file:
+      - ./server/.env
+    ports:
+      - "5001:5001"      # <-- host:container
+    depends_on:
+      - mongo
+    volumes:
+      - ./server:/usr/src/app:cached
+      - /usr/src/app/node_modules
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: mern_web
+    command: npm run dev -- --host 0.0.0.0
+    env_file:
+      - ./client/.env     # use frontend .env
+    ports:
+      - "5173:5173"       # Vite dev server
+    depends_on:
+      - server
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  mongo_data:

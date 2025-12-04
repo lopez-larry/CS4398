@@ -1,0 +1,43 @@
+<!--
+  @file index.html
+  @description Root HTML template for the AI Resume web app. This file is processed by React during build time.
+
+  Features:
+    - Sets up responsive design meta tags
+    - Loads app favicon and manifest
+    - Loads Bootstrap (v4.3.1) bundle
+    - Contains the root <div> where the React app is rendered
+
+  Notes:
+    - %PUBLIC_URL% is replaced during build with the base path to /public.
+    - This file is NOT meant to contain dynamic content — React renders everything into #root.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="AI-powered resume builder and analyzer web app" />
+
+    <!-- Icons & manifest: place files in /public -->
+    <link rel="icon" href="/logo.ico" />
+    <link rel="apple-touch-icon" href="/logo.ico" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Square (sandbox). Swap for prod key via env when deploying -->
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+
+    <title>MERN Starter</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <!-- Vite entry -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

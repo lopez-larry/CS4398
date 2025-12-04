@@ -1,0 +1,359 @@
+/* App.css or index.css */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer.footer {
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+}
+
+footer {
+  background: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* ---------------------------------------
+   App Layout & Branding
+---------------------------------------- */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.App-logo {
+  background-image: url('assets/img.png');
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+/* ---------------------------------------
+   Breeder Styling
+---------------------------------------- */
+.breeder-img {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  border-radius: 9999px; /* makes it round */
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+
+/* ---------------------------------------
+   Dog Styling
+---------------------------------------- */
+
+/* Responsive Dog Grid */
+.dog-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* default: 1 column */
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dog-grid {
+    grid-template-columns: repeat(3, 1fr); /* md/lg: 3 columns */
+  }
+}
+
+@media (min-width: 1280px) {
+  .dog-grid {
+    grid-template-columns: repeat(4, 1fr); /* xl: 4 columns */
+  }
+}
+
+/* Dog card styling */
+.dog-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+  background: #fff;
+}
+
+.dog-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Dog image placeholder */
+.dog-placeholder {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+/* ---------------------------------------
+   Navigation Styling
+---------------------------------------- */
+.nav-item {
+  margin-left: 15px;
+}
+
+.nav-link {
+  color: #555;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-link.active {
+  color: #004085;
+  font-weight: bold;
+}
+
+.nav-link:focus {
+  outline: none;
+  background-color: #e2e6ea;
+  color: #0056b3;
+}
+
+/* ---------------------------------------
+   Container Layouts
+---------------------------------------- */
+.container-left {
+  max-width: 960px;
+  text-align: start;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+
+.sorting-controls {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.sorting-controls button{
+  margin: 0px 8px;
+}
+
+/* Optional custom hover for Bootstrap buttons */
+.btn-primary.custom-hover:hover {
+  background-color: #e9ecef !important;
+  color: #000 !important;
+  border-color: #ccc !important;
+}
+
+/* ---------------------------------------
+   Utility Classes
+---------------------------------------- */
+.no-results {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #555;
+  text-align: center;
+}
+
+/* ---------------------------------------
+   Buttons Classes
+---------------------------------------- */
+.btn-invert {
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-invert.btn-primary {
+  background-color: var(--bs-primary);
+  border: 1px solid var(--bs-primary);
+}
+
+.btn-invert.btn-primary:hover {
+  background-color: #fff;
+  color: var(--bs-primary);
+  border: 1px solid var(--bs-primary);
+}
+
+.btn-invert.btn-warning {
+  background-color: var(--bs-warning);
+  border: 1px solid var(--bs-warning);
+}
+
+.btn-invert.btn-warning:hover {
+  background-color: #fff;
+  color: var(--bs-warning);
+  border: 1px solid var(--bs-warning);
+}
+
+.btn-invert.btn-danger {
+  background-color: var(--bs-danger);
+  border: 1px solid var(--bs-danger);
+}
+
+.btn-invert.btn-danger:hover {
+  background-color: #fff;
+  color: var(--bs-danger);
+  border: 1px solid var(--bs-danger);
+}
+
+.btn-invert.btn-success {
+  background-color: var(--bs-success);
+  border: 1px solid var(--bs-success);
+  color: #fff;
+}
+
+.btn-invert.btn-success:hover {
+  background-color: #fff;
+  color: var(--bs-success);
+  border: 1px solid var(--bs-success);
+}
+
+.btn-invert.btn-secondary {
+  background-color: var(--bs-secondary);
+  border: 1px solid var(--bs-secondary);
+  color: #fff;
+}
+
+.btn-invert.btn-secondary:hover {
+  background-color: #fff;
+  color: var(--bs-secondary);
+  border: 1px solid var(--bs-secondary);
+}
+
+.btn-list{
+  width: 80px;
+}
+
+.btn-profile{
+  width: 200px;
+}
+
+/* ---------------------------------------
+   Message Bubble
+---------------------------------------- */
+
+.message-bubble {
+  border-radius: 12px;
+  padding: 8px 12px;
+  max-width: 50%;
+  margin-bottom: 10px;
+}
+
+.message-bubble.sent {
+  background-color: #d6d6d6;
+  color: #090909;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message-bubble.received {
+  background-color: #5a5a5a; /* light gray */
+  color: #ffffff;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* Mobile responsiveness: widen bubbles on small screens */
+@media (max-width: 768px) {
+  .message-bubble {
+    max-width: 80%; /* take more space on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .message-bubble {
+    max-width: 90%; /* even wider on very small screens */
+  }
+}
+
+/* ---------------------------------------
+/* Hero cards styling */
+.home {
+  background-color: #ffffff; /* black background */
+  color: rgb(1, 5, 9);
+  min-height: 100vh;
+}
+.card-hero {
+  position: relative;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  height: 600px;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background-color: #000; /* card background color */
+}
+
+.card-hero img {
+  max-width: 90%;   /* shrink image to leave card background visible */
+  max-height: 80%;  /* shrink image vertically */
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card-hero:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.card-img-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  transition: background 0.3s ease;
+}
+
+.card-hero:hover .card-img-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+  .card-hero img {
+    height: 250px !important;
+    object-fit: cover;
+  }
+
+  .hero-banner img {
+    max-height: 300px !important;
+  }
+}
+/* --------------------------------------- */

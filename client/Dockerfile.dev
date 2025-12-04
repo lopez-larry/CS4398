@@ -1,0 +1,12 @@
+# syntax=docker/dockerfile:1
+FROM node:20-bullseye
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install   # use install instead of ci for better DX in dev
+
+# Source is mounted at runtime (see docker-compose)
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
