@@ -1,47 +1,9 @@
 # Spa Pam Project
 
-
-Example Pull Request
-
-```mermaid
-gantt
-    title SPA Pam Project Timeline
-    dateFormat YYYY-MM-DD
-    axisFormat %b %d
-
-    section Setup
-        Gather Industry Trends: done, des1, 2025-09-04, 2025-09-09
-        Create Site Map: done, des2, 2025-09-09, 2025-09-11
-        Create WireFrames: done, des3, 2025-09-09, 2025-09-16
-        Develop Brand Elements: done,des4, 2025-09-09, 2025-09-16
-        Define User Stories: done, des5, 2025-09-16, 2025-09-18
-        Software Documentation: done, des7, 2025-09-16, 2025-09-26
-        Review Stack Training: crit, active, des6, 2025-09-16, 2025-10-07
-        Project Status Report: milestone, status, 2025-10-08, 0d
-
-    section Features
-        Project scaffolding: des8, 2025-10-09, 2025-10-26
-        Authentication: des9, 2025-10-09, 2025-10-16
-        MongoDB connection: des10, 2025-10-09, 2025-10-14
-        Dog & Breed CRUD: des11, 2025-10-09, 2025-10-14
-        Image Upload (S3): des12, 2025-10-09, 2025-10-14
-        Dog Detail Enhancements: des13, 2025-10-09, 2025-10-14
-        Breeder Messaging System: des14, 2025-10-13, 2025-10-24
-        Project Prototype: milestone, prototype, 2025-11-05, 0d
-
-    section Deployment
-        AWS S3 + CloudFront Setup: des15, 2025-11-06, 2025-11-10
-        Backend on EC2: des16, 2025-11-06, 2025-11-10
-        Full AWS Integration: des17, 2025-11-10, 2025-11-13
-        End-to-End Test: des18, 2025-11-14, 2025-12-02
-        Final Project Report: milestone, final, 2025-12-03, 0d
-```
 ## Starting the Application
-
 ### Run NPM install 
-change directory to client and run `npm install`
-
-change directory to server and run `npm install`
+change directory to client and run install, update as needed.
+change directory to server and run install, update as needed. 
 
 ```bash
 cd server
@@ -50,18 +12,56 @@ npm install   # generates server/package-lock.json
 cd ../client
 npm install   # generates client/package-lock.json
 ```
-
 ---
 
-## Run Docker
-### install docker 
-Download docker for you Operating System 
+## Install Docker
+Download docker for you Operating System.  
+Open docker in background.
 
-Opne docker in background
+## Create Environment Files
+- Development: Create mongo db account to store data. 
+- Production: Create AWS account for S3, SES, and EC2 services.
+- Create .env files in both, client and server.
 
-### Start Docker 
-From IDE Terminal run: 
+1. Client
+```bash
+VITE_API_BASE_URL=/api
+```
 
+2. Server
+```bash
+# MongoDB connection URI Project SPA-PAM
+MONGO_URI=<insert database>
+
+# Server port for dev
+PORT=5001
+
+# AWS for Production
+AWS_BUCKET_NAME=<insert name>
+AWS_REGION=<insert region>
+AWS_ACCESS_KEY_ID=<insert key>
+AWS_SECRET_ACCESS_KEY=<insert key>
+
+# Email credentials (should use App Password for Gmail)
+SES_SOURCE_EMAIL=<insert email>
+
+# Auth
+JWT_SECRET=<insert secrete>
+SESSION_SECRET=<insert secrete>
+COOKIE_SECRET=<insert secrete>
+
+# Frontend base URL (used for redirects, email links, etc.)
+FRONTEND_URL=http://localhost:5173
+```
+
+## Load Data
+Using Server --> Scripts to load data.
+```bash
+cd server
+node scripts/<NAME_OF_SCRIPT>.js
+```
+
+## Start Docker from IDE Terminal
 Docker Start  
 > docker compose -f docker-compose.dev.yml up --build -d
 
@@ -70,7 +70,6 @@ Docker Shut Down
 
 Restart  
 > docker compose -f docker-compose.dev.yml restart 
-
 
 Restart Client Only   
 > docker compose -f docker-compose.dev.yml restart client 
@@ -81,8 +80,7 @@ Logs
 Cypress Global Command (Setup Mac Repo - required)
 > run-spa-tests  
 
-Local SPA → http://localhost:5173  
-
+Local SPA → http://localhost:5173
 Live -> https://d3ksowre3dfy72.cloudfront.net
 
 ### Users created using the seed script:
