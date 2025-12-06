@@ -81,7 +81,7 @@ Cypress Global Command (Setup Mac Repo - required)
 > run-spa-tests  
 
 Local SPA → http://localhost:5173
-Live -> https://d3ksowre3dfy72.cloudfront.net
+
 
 ### Users created using the seed script:
 UserNames:   
