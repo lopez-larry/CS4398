@@ -1,4 +1,5 @@
-# Spa Pam Project
+# Single Page Application
+## Personal Asset Manager Project
 
 ## Starting the Application
 ### Run NPM install 
